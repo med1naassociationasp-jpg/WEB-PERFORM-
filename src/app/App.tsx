@@ -116,11 +116,37 @@ function HomePage() {
     "Tecnologías de vanguardia"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('¡Gracias por tu interés! Te contactaremos pronto.');
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  try {
+    const response = await fetch('/.netlify/functions/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert(data.message);
+      setFormData({
+        firstname: '',
+        lastname: '',
+        email: '',
+        mobile: '',
+        microsip_source: ''
+      });
+    } else {
+      alert('Error: ' + data.error);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error al enviar el formulario. Por favor intenta nuevamente.');
+  }
+};
 
   return (
     <div className="min-h-screen bg-white">
