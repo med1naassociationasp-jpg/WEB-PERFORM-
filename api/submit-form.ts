@@ -18,7 +18,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     params.append('email', email.trim());
     params.append('mobile', mobile.trim());
     params.append('cf_1021', microsip_source.trim());
-    params.append('__vtrftk', 'sid:0728edbf570a45cb6acbe9f87942fc5ac7409415,1780597343');
+    params.append('__vtrftk', 'sid:1e1a73fe1144d525b02b81078d927bea6b70e877,1780688660');
     params.append('publicid', '9fa3a5d787c563b345c156922f70f090');
 
     console.log('Enviando a Mantic360:', {
