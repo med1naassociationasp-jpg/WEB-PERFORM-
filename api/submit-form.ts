@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -21,22 +21,10 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     params.append('__vtrftk', 'sid:1e1a73fe1144d525b02b81078d927bea6b70e877,1780688660');
     params.append('publicid', '9fa3a5d787c563b345c156922f70f090');
 
-    console.log('Enviando a Mantic360:', {
-      firstname,
-      lastname,
-      email,
-      mobile,
-      cf_1021: microsip_source
-    });
-
-    fetch('https://perform.mantic360-s1.net/modules/Webforms/capture.php', {
+    const response = await fetch('https://perform.mantic360-s1.net/modules/Webforms/capture.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: params.toString(),
-    }).then(response => {
-      console.log('Mantic360 Status:', response.status);
-    }).catch(error => {
-      console.error('Error:', error);
     });
 
     return res.status(200).json({
