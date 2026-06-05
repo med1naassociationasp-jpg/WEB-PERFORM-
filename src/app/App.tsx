@@ -1,4 +1,4 @@
-eactimport { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router';
 import {
@@ -43,13 +43,6 @@ import microsipLogo from '../imports/micros.jpg';
 function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    mobile: '',
-    microsip_source: ''
-  });
 
   const services = [
     {
@@ -115,38 +108,6 @@ function HomePage() {
     "ROI comprobado en 6 meses",
     "Tecnologías de vanguardia"
   ];
-
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  try {
-    const response = await fetch('/api/submit-form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      alert(data.message);
-      setFormData({
-        firstname: '',
-        lastname: '',
-        email: '',
-        mobile: '',
-        microsip_source: ''
-      });
-    } else {
-      alert('Error: ' + data.error);
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Error al enviar el formulario. Por favor intenta nuevamente.');
-  }
-};
 
   return (
     <div className="min-h-screen bg-white">
@@ -701,53 +662,53 @@ function HomePage() {
               viewport={{ once: true }}
             >
               <form id="__vtigerWebForm" name="Leads" action="https://perform.mantic360-s1.net/modules/Webforms/capture.php" method="post" acceptCharset="utf-8" encType="multipart/form-data" className="bg-white rounded-2xl p-8 shadow-2xl">
-  <input type="hidden" name="__vtrftk" value="sid:1e1a73fe1144d525b02b81078d927bea6b70e877,1780688660" />
-  <input type="hidden" name="publicid" value="9fa3a5d787c563b345c156922f70f090" />
-  <input type="hidden" name="captcha_no_active" value="true" />
+                <input type="hidden" name="__vtrftk" value="sid:1e1a73fe1144d525b02b81078d927bea6b70e877,1780688660" />
+                <input type="hidden" name="publicid" value="9fa3a5d787c563b345c156922f70f090" />
+                <input type="hidden" name="captcha_no_active" value="true" />
 
-  <h3 className="text-2xl font-bold text-gray-900 mb-6">
-    Solicita tu Consulta Gratuita
-  </h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  Solicita tu Consulta Gratuita
+                </h3>
 
-  <div className="space-y-4">
-    <div>
-      <label className="block text-gray-700 font-semibold mb-2">Nombres *</label>
-      <input type="text" required name="firstname" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none" placeholder="Tu nombre" />
-    </div>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">Nombres *</label>
+                    <input type="text" required name="firstname" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none" placeholder="Tu nombre" />
+                  </div>
 
-    <div>
-      <label className="block text-gray-700 font-semibold mb-2">Apellidos *</label>
-      <input type="text" required name="lastname" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none" placeholder="Tus apellidos" />
-    </div>
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">Apellidos *</label>
+                    <input type="text" required name="lastname" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none" placeholder="Tus apellidos" />
+                  </div>
 
-    <div>
-      <label className="block text-gray-700 font-semibold mb-2">E-mail *</label>
-      <input type="email" required name="email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none" placeholder="tu@email.com" />
-    </div>
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">E-mail *</label>
+                    <input type="email" required name="email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none" placeholder="tu@email.com" />
+                  </div>
 
-    <div>
-      <label className="block text-gray-700 font-semibold mb-2">Teléfono móvil *</label>
-      <input type="tel" required name="mobile" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none" placeholder="+52 123 456 7890" />
-    </div>
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">Teléfono móvil *</label>
+                    <input type="tel" required name="mobile" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none" placeholder="+52 123 456 7890" />
+                  </div>
 
-    <div>
-      <label className="block text-gray-700 font-semibold mb-2">¿Cómo te enteraste de Microsip? *</label>
-      <select required name="cf_1021" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none">
-        <option value="">Seleccionar valor</option>
-        <option value="Recomendacion">Recomendacion</option>
-        <option value="Expo">Expo</option>
-        <option value="Medio Impreso">Medio Impreso</option>
-        <option value="Redes Sociales">Redes Sociales</option>
-        <option value="Radio o Television">Radio o Television</option>
-      </select>
-    </div>
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">¿Cómo te enteraste de Microsip? *</label>
+                    <select required name="cf_1021" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none">
+                      <option value="">Seleccionar valor</option>
+                      <option value="Recomendacion">Recomendacion</option>
+                      <option value="Expo">Expo</option>
+                      <option value="Medio Impreso">Medio Impreso</option>
+                      <option value="Redes Sociales">Redes Sociales</option>
+                      <option value="Radio o Television">Radio o Television</option>
+                    </select>
+                  </div>
 
-    <button type="submit" className="w-full bg-teal-600 text-white px-8 py-4 rounded-lg hover:bg-teal-700 transition-colors font-semibold text-lg flex items-center justify-center gap-2">
-      Enviar Solicitud
-      <ArrowRight className="w-5 h-5" />
-    </button>
-  </div>
-</form>
+                  <button type="submit" className="w-full bg-teal-600 text-white px-8 py-4 rounded-lg hover:bg-teal-700 transition-colors font-semibold text-lg flex items-center justify-center gap-2">
+                    Enviar Solicitud
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </form>
             </motion.div>
           </div>
         </div>
