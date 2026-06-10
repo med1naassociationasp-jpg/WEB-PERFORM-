@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+data/
+auth/
+.env
+.env.local
+.env*.local
+.restart
+prompts/negocio.md
+logs/
